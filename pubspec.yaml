@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter: ^2.0.10
-  http: ^0.13.3
+  webview_flutter: ^3.0.0
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:
