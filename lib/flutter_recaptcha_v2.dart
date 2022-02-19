@@ -167,8 +167,8 @@ class RecaptchaV2Controller extends ChangeNotifier {
 
   @override
   void dispose() {
-    _listeners = [];
-    isDisposed = true;
+    //_listeners = [];
+    //isDisposed = true;
     super.dispose();
   }
 
@@ -180,7 +180,7 @@ class RecaptchaV2Controller extends ChangeNotifier {
 
   @override
   void removeListener(listener) {
-    _listeners.remove(listener);
+    //_listeners.remove(listener);
     super.removeListener(listener);
   }
 }
