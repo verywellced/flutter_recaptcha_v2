@@ -63,13 +63,15 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
   void onListen() {
     if (controller.visible) {
       if (webViewController != null) {
-        webViewController!.clearCache();
-        webViewController!.reload();
+        //webViewController!.clearCache();
+        //webViewController!.reload();
       }
     }
-    setState(() {
-      controller.visible;
-    });
+    if (this.mounted){
+      setState(() {
+        controller.visible;
+      });
+    }
   }
 
   @override
@@ -91,8 +93,8 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
 
   @override
   void dispose() {
-    controller.removeListener(onListen);
-    controller.dispose();
+    //controller.removeListener(onListen);
+    //controller.dispose();
     super.dispose();
   }
 
