@@ -2,7 +2,6 @@ library flutter_recaptcha_v2;
 
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:webview_flutter/webview_flutter.dart';
@@ -12,8 +11,8 @@ class RecaptchaV2 extends StatefulWidget {
   final String apiSecret;
   final String pluginURL;
   final RecaptchaV2Controller controller;
-  bool visibleCancelBottom;
-  String textCancelButtom;
+  final bool visibleCancelBottom;
+  final String textCancelButtom;
 
   final ValueChanged<bool>? onVerifiedSuccessfully;
   final ValueChanged<String>? onVerifiedError;
@@ -21,15 +20,13 @@ class RecaptchaV2 extends StatefulWidget {
   RecaptchaV2({
     required this.apiKey,
     required this.apiSecret,
-    this.pluginURL: "https://recaptcha-flutter-plugin.firebaseapp.com/",
-    this.visibleCancelBottom: false,
-    this.textCancelButtom: "CANCEL CAPTCHA",
+    this.pluginURL = "https://recaptcha-flutter-plugin.firebaseapp.com/",
+    this.visibleCancelBottom = false,
+    this.textCancelButtom = "CANCEL CAPTCHA",
     RecaptchaV2Controller? controller,
     this.onVerifiedSuccessfully,
     this.onVerifiedError,
-  })  : controller = controller ?? RecaptchaV2Controller(),
-        assert(apiKey != null, "Google ReCaptcha API KEY is missing."),
-        assert(apiSecret != null, "Google ReCaptcha API SECRET is missing.");
+  }) : controller = controller ?? RecaptchaV2Controller();
 
   @override
   State<StatefulWidget> createState() => _RecaptchaV2State();
@@ -67,7 +64,7 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
         //webViewController!.reload();
       }
     }
-    if (this.mounted){
+    if (this.mounted) {
       setState(() {
         controller.visible;
       });
@@ -132,7 +129,7 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         Expanded(
-                          child: RaisedButton(
+                          child: ElevatedButton(
                             child: Text(widget.textCancelButtom),
                             onPressed: () {
                               controller.hide();

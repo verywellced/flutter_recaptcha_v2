@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                RaisedButton(
+                ElevatedButton(
                   child: Text("SHOW ReCAPTCHA"),
                   onPressed: () {
                     recaptchaV2Controller.show();
@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
             apiKey: "6LeCwZYUAAAAAJo8IVvGX9dH65Rw89vxaxErCeou",
             apiSecret: "6LeCwZYUAAAAAKGahIjwfOARevvRETgvwhPMKCs_",
             controller: recaptchaV2Controller,
-            onVerifiedError: (err){
+            onVerifiedError: (err) {
               print(err);
             },
             onVerifiedSuccessfully: (success) {
