@@ -12,7 +12,9 @@ class RecaptchaV2 extends StatefulWidget {
   final String pluginURL;
   final RecaptchaV2Controller controller;
   final bool visibleCancelBottom;
+  final bool hideOnVerify;
   final String textCancelButtom;
+  final Color webViewBgColor;
 
   final ValueChanged<bool>? onVerifiedSuccessfully;
   final ValueChanged<String>? onVerifiedError;
@@ -26,6 +28,8 @@ class RecaptchaV2 extends StatefulWidget {
     RecaptchaV2Controller? controller,
     this.onVerifiedSuccessfully,
     this.onVerifiedError,
+    this.hideOnVerify = true,
+    this.webViewBgColor = Colors.white,
   }) : controller = controller ?? RecaptchaV2Controller();
 
   @override
@@ -54,7 +58,9 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
     }
 
     // hide captcha
-    controller.hide();
+    if (widget.hideOnVerify) {
+      controller.hide();
+    }
   }
 
   void onListen() {
@@ -103,6 +109,7 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
               WebView(
                 initialUrl: "${widget.pluginURL}?api_key=${widget.apiKey}",
                 javascriptMode: JavascriptMode.unrestricted,
+                backgroundColor: widget.webViewBgColor,
                 javascriptChannels: <JavascriptChannel>[
                   JavascriptChannel(
                     name: 'RecaptchaFlutterChannel',
