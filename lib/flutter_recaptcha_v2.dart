@@ -43,21 +43,11 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
   WebViewController? webViewController;
 
   void verifyToken(String token) async {
-    String url = "https://www.google.com/recaptcha/api/siteverify";
-    http.Response response = await http.post(Uri.parse(url), body: {
-      "secret": widget.apiSecret,
-      "response": token,
-    });
-
-    if (response.statusCode == 200) {
-      dynamic json = jsonDecode(response.body);
-      if (json['success']) {
-        widget.onVerifiedSuccessfully!(true);
-        widget.onSendToken!(token);
-      } else {
-        widget.onVerifiedSuccessfully!(false);
-        widget.onVerifiedError!(json['error-codes'].toString());
-      }
+    if (token.isNotEmpty) {
+      widget.onVerifiedSuccessfully!(true);
+      widget.onSendToken!(token);
+    } else {
+      widget.onVerifiedSuccessfully!(false);
     }
 
     // hide captcha
