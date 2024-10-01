@@ -18,6 +18,7 @@ class RecaptchaV2 extends StatefulWidget {
 
   final ValueChanged<bool>? onVerifiedSuccessfully;
   final ValueChanged<String>? onVerifiedError;
+  final ValueChanged<String>? onSendToken;
 
   RecaptchaV2({
     required this.apiKey,
@@ -27,6 +28,7 @@ class RecaptchaV2 extends StatefulWidget {
     this.textCancelButtom = "CANCEL CAPTCHA",
     RecaptchaV2Controller? controller,
     this.onVerifiedSuccessfully,
+    this.onSendToken,
     this.onVerifiedError,
     this.hideOnVerify = true,
     this.webViewBgColor = Colors.white,
@@ -51,6 +53,7 @@ class _RecaptchaV2State extends State<RecaptchaV2> {
       dynamic json = jsonDecode(response.body);
       if (json['success']) {
         widget.onVerifiedSuccessfully!(true);
+        widget.onSendToken!(token);
       } else {
         widget.onVerifiedSuccessfully!(false);
         widget.onVerifiedError!(json['error-codes'].toString());
