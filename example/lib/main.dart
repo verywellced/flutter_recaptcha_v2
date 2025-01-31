@@ -1,3 +1,4 @@
+import 'package:flutter_recaptcha_v2/controller/recaptchav2_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_recaptcha_v2/flutter_recaptcha_v2.dart';
 
@@ -12,13 +13,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Google ReCaptcha Demo'),
+      home: MyHomePage(
+        title: 'Google ReCaptcha Demo',
+        key: Key('homepage'),
+      ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({
+    required Key key,
+    required this.title,
+  }) : super(key: key);
 
   final String title;
 
@@ -56,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
           RecaptchaV2(
             apiKey: "6LeCwZYUAAAAAJo8IVvGX9dH65Rw89vxaxErCeou",
             apiSecret: "6LeCwZYUAAAAAKGahIjwfOARevvRETgvwhPMKCs_",
-            controller: recaptchaV2Controller,
+            recaptchaController: recaptchaV2Controller,
             onVerifiedError: (err) {
               print(err);
             },
